@@ -1,0 +1,32 @@
+{
+  "unburned": {
+    "pixels": 6699524,
+    "area_km2": 669.9524,
+    "area_acres": 165548.587802
+  },
+  "low": {
+    "pixels": 476452,
+    "area_km2": 47.6452,
+    "area_acres": 11773.367146
+  },
+  "moderate_low": {
+    "pixels": 503283,
+    "area_km2": 50.328300000000006,
+    "area_acres": 12436.3745715
+  },
+  "moderate_high": {
+    "pixels": 166304,
+    "area_km2": 16.6304,
+    "area_acres": 4109.454992
+  },
+  "high": {
+    "pixels": 5783,
+    "area_km2": 0.5783,
+    "area_acres": 142.9008215
+  },
+  "total_burned": {
+    "pixels": 1151822,
+    "area_km2": 115.18220000000001,
+    "area_acres": 28462.097531
+  }
+}

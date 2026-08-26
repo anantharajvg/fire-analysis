@@ -1,0 +1,1583 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "dct": "http://purl.org/dc/terms/",
+    "geocr": "http://mlcommons.org/croissant/geo/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "sc": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "containedIn": {
+      "@id": "cr:containedIn",
+      "@type": "@id"
+    },
+    "isArray": "cr:isArray",
+    "arrayShape": "cr:arrayShape",
+    "@base": "cr_base_iri/"
+  },
+  "@type": "Dataset",
+  "name": "Palisades & Eaton Fires Los Angeles - Before & After Analysis",
+  "conformsTo": [
+    "http://mlcommons.org/croissant/1.1",
+    "http://mlcommons.org/croissant/geo/1.0",
+    "http://mlcommons.org/croissant/RAI/1.0"
+  ],
+  "isLiveDataset": true,
+  "description": "Satellite imagery of the Palisades and Eaton Fires in the Los Angeles area, California, captured before and after the fire event in January 2025. Combines cloud-free Sentinel-2 optical multispectral imagery (10-20m resolution) with Sentinel-1 SAR radar data (10-25m resolution) to enable fire extent mapping and damage assessment. Optical data shows visible/near-infrared reflectance for burned area detection. Radar data penetrates clouds and detects structural changes.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "creator": [
+    {
+      "@type": "Organization",
+      "name": "European Space Agency (ESA)"
+    },
+    {
+      "@type": "Organization",
+      "name": "NASA"
+    },
+    {
+      "@type": "Organization",
+      "name": "USGS"
+    }
+  ],
+  "spatialCoverage": {
+    "@type": "Place",
+    "geo": {
+      "@type": "GeoShape",
+      "box": "31.7327169 -121.471931 35.6713528 -116.0043329"
+    }
+  },
+  "temporalCoverage": "2024-12-28/2025-02-02",
+  "geocr:coordinateReferenceSystem": "EPSG:4326",
+  "geocr:spatialBias": "[\"Dataset restricted to Los Angeles County (bounding box: -118.67\u00b0W to -118.16\u00b0W, 33.66\u00b0N to 34.34\u00b0N). Completeness depends on Sentinel's 5-6 day revisit cycle. Mid-latitude coverage is optimal; polar regions have gaps but do not apply here.\"]",
+  "geocr:samplingStrategy": "[\"All available cloud-free (\u226410%) Sentinel-2 within \u00b115 day windows around fire event over Los Angeles County bounding box\", \"All available Sentinel-1 GRD acquisitions in same windows; varied orbit states (ascending/descending)\", \"Pre-event window: 2024-12-20 to 2025-01-05; Post-event window: 2025-01-15 to 2025-02-05\"]",
+  "rai:dataCollection": "[\"Sentinel-2 data from ESA Multispectral Instrument (MSI) via Copernicus program; Level-2A surface reflectance atmospherically corrected by ESA\", \"Sentinel-1 data from ESA Synthetic Aperture Radar (SAR) via Copernicus program; Level-1C Ground Range Detected products via AWS Open Data\", \"Data selected around fire event dates (January 7-9, 2025) with cloud cover \u226410% for optical data\"]",
+  "rai:personalSensitiveInformation": [
+    "Dataset contains georeferenced satellite imagery of private residential properties in Los Angeles. While satellite imagery is publicly available, derivative products identifying burned homes require privacy-aware handling."
+  ],
+  "rai:dataLimitations": [
+    "Sentinel-2 optical data limited by cloud cover; pre/post scenes selected for minimal cloud \u226410%",
+    "Sentinel-1 SAR not affected by clouds but has lower spatial resolution than optical data",
+    "Dataset represents only available cloud-free acquisitions; temporal gaps exist due to revisit cycles (5-6 days)",
+    "Fire perimeter boundaries not included; users must apply fire detection algorithms (Normalized Burn Ratio, coherence change detection)",
+    "Data includes ESA Level-2A atmospheric corrections only; users may need additional radiometric calibration",
+    "Ground truth validation data not provided; fire extent depends on user interpretation of spectral signatures"
+  ],
+  "rai:dataBiases": [
+    "Optical data affected by atmospheric effects (aerosol, water vapor) that alter spectral reflectance in smoke-affected areas",
+    "SAR backscatter affected by surface roughness changes from fire damage; requires multi-temporal coherence analysis",
+    "Sentinel constellation has polar orbit characteristics but does not affect mid-latitude coverage at Los Angeles"
+  ],
+  "rai:dataUseCases": [
+    "Disaster response and emergency management",
+    "Fire extent and burn severity mapping",
+    "Pre/post-event damage assessment",
+    "Land use and land cover change analysis",
+    "Vegetation recovery monitoring"
+  ],
+  "rai:dataSocialImpact": "[\"Enables rapid damage assessment supporting emergency response and resource allocation\", \"Fire extent maps inform evacuation planning and public safety communication\", \"Post-fire analysis supports insurance claims and disaster relief targeting\", \"Supports independent verification of fire impacts and transparency\", \"Caution: fire extent analysis may identify burned private properties; users should consider privacy implications when sharing derived damage maps\"]",
+  "rai:hasSyntheticData": false,
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_aot",
+      "name": "S2A_T11SLT_20250102T183754_L2A_aot",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/AOT.tif",
+      "contentSize": "681488"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_blue",
+      "name": "S2A_T11SLT_20250102T183754_L2A_blue",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B02.tif",
+      "contentSize": "217897459"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_cloud",
+      "name": "S2A_T11SLT_20250102T183754_L2A_cloud",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/CLD_20m.tif",
+      "contentSize": "1368167"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_coastal",
+      "name": "S2A_T11SLT_20250102T183754_L2A_coastal",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B01.tif",
+      "contentSize": "6113283"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_green",
+      "name": "S2A_T11SLT_20250102T183754_L2A_green",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B03.tif",
+      "contentSize": "216199321"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_nir",
+      "name": "S2A_T11SLT_20250102T183754_L2A_nir",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B08.tif",
+      "contentSize": "218774426"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_nir08",
+      "name": "S2A_T11SLT_20250102T183754_L2A_nir08",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B8A.tif",
+      "contentSize": "57332756"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_nir09",
+      "name": "S2A_T11SLT_20250102T183754_L2A_nir09",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B09.tif",
+      "contentSize": "6316469"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_red",
+      "name": "S2A_T11SLT_20250102T183754_L2A_red",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B04.tif",
+      "contentSize": "216222895"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_rededge1",
+      "name": "S2A_T11SLT_20250102T183754_L2A_rededge1",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B05.tif",
+      "contentSize": "56550949"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_rededge2",
+      "name": "S2A_T11SLT_20250102T183754_L2A_rededge2",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B06.tif",
+      "contentSize": "56945966"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_rededge3",
+      "name": "S2A_T11SLT_20250102T183754_L2A_rededge3",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B07.tif",
+      "contentSize": "57199183"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_scl",
+      "name": "S2A_T11SLT_20250102T183754_L2A_scl",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/SCL.tif",
+      "contentSize": "1809409"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_snow",
+      "name": "S2A_T11SLT_20250102T183754_L2A_snow",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/SNW_20m.tif",
+      "contentSize": "61356"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_swir16",
+      "name": "S2A_T11SLT_20250102T183754_L2A_swir16",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B11.tif",
+      "contentSize": "55837243"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_swir22",
+      "name": "S2A_T11SLT_20250102T183754_L2A_swir22",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B12.tif",
+      "contentSize": "56073396"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_wvp",
+      "name": "S2A_T11SLT_20250102T183754_L2A_wvp",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/WVP.tif",
+      "contentSize": "21379984"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_preview",
+      "name": "S2A_T11SLT_20250102T183754_L2A_preview",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/L2A_PVI.tif",
+      "contentSize": "194498"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_thumbnail",
+      "name": "S2A_T11SLT_20250102T183754_L2A_thumbnail",
+      "encodingFormat": "image/jpeg",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/L2A_PVI.jpg",
+      "contentSize": "37339"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLT_20250102T183754_L2A_visual",
+      "name": "S2A_T11SLT_20250102T183754_L2A_visual",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/TCI.tif",
+      "contentSize": "297741620"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_aot",
+      "name": "S2A_T11SLU_20250102T183754_L2A_aot",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/AOT.tif",
+      "contentSize": "1973066"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_blue",
+      "name": "S2A_T11SLU_20250102T183754_L2A_blue",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B02.tif",
+      "contentSize": "227451494"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_cloud",
+      "name": "S2A_T11SLU_20250102T183754_L2A_cloud",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/CLD_20m.tif",
+      "contentSize": "427698"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_coastal",
+      "name": "S2A_T11SLU_20250102T183754_L2A_coastal",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B01.tif",
+      "contentSize": "6137767"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_green",
+      "name": "S2A_T11SLU_20250102T183754_L2A_green",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B03.tif",
+      "contentSize": "229456774"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_nir",
+      "name": "S2A_T11SLU_20250102T183754_L2A_nir",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B08.tif",
+      "contentSize": "245592026"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_nir08",
+      "name": "S2A_T11SLU_20250102T183754_L2A_nir08",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B8A.tif",
+      "contentSize": "62269495"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_nir09",
+      "name": "S2A_T11SLU_20250102T183754_L2A_nir09",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B09.tif",
+      "contentSize": "6880234"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_red",
+      "name": "S2A_T11SLU_20250102T183754_L2A_red",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B04.tif",
+      "contentSize": "232625487"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_rededge1",
+      "name": "S2A_T11SLU_20250102T183754_L2A_rededge1",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B05.tif",
+      "contentSize": "61148584"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_rededge2",
+      "name": "S2A_T11SLU_20250102T183754_L2A_rededge2",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B06.tif",
+      "contentSize": "61830778"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_rededge3",
+      "name": "S2A_T11SLU_20250102T183754_L2A_rededge3",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B07.tif",
+      "contentSize": "62130078"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_scl",
+      "name": "S2A_T11SLU_20250102T183754_L2A_scl",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/SCL.tif",
+      "contentSize": "2863825"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_snow",
+      "name": "S2A_T11SLU_20250102T183754_L2A_snow",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/SNW_20m.tif",
+      "contentSize": "54231"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_swir16",
+      "name": "S2A_T11SLU_20250102T183754_L2A_swir16",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B11.tif",
+      "contentSize": "61675629"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_swir22",
+      "name": "S2A_T11SLU_20250102T183754_L2A_swir22",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B12.tif",
+      "contentSize": "61292557"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_wvp",
+      "name": "S2A_T11SLU_20250102T183754_L2A_wvp",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/WVP.tif",
+      "contentSize": "45325449"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_preview",
+      "name": "S2A_T11SLU_20250102T183754_L2A_preview",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/L2A_PVI.tif",
+      "contentSize": "214926"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_thumbnail",
+      "name": "S2A_T11SLU_20250102T183754_L2A_thumbnail",
+      "encodingFormat": "image/jpeg",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/L2A_PVI.jpg",
+      "contentSize": "41212"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_before__S2A_T11SLU_20250102T183754_L2A_visual",
+      "name": "S2A_T11SLU_20250102T183754_L2A_visual",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/TCI.tif",
+      "contentSize": "362535374"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_aot",
+      "name": "S2C_T11SLU_20250201T184431_L2A_aot",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/AOT.tif",
+      "contentSize": "2406786"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_blue",
+      "name": "S2C_T11SLU_20250201T184431_L2A_blue",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B02.tif",
+      "contentSize": "227456316"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_cloud",
+      "name": "S2C_T11SLU_20250201T184431_L2A_cloud",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/CLD_20m.tif",
+      "contentSize": "2049981"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_coastal",
+      "name": "S2C_T11SLU_20250201T184431_L2A_coastal",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B01.tif",
+      "contentSize": "6341483"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_green",
+      "name": "S2C_T11SLU_20250201T184431_L2A_green",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B03.tif",
+      "contentSize": "228635209"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_nir",
+      "name": "S2C_T11SLU_20250201T184431_L2A_nir",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B08.tif",
+      "contentSize": "235473585"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_nir08",
+      "name": "S2C_T11SLU_20250201T184431_L2A_nir08",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B8A.tif",
+      "contentSize": "61855605"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_nir09",
+      "name": "S2C_T11SLU_20250201T184431_L2A_nir09",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B09.tif",
+      "contentSize": "6860447"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_red",
+      "name": "S2C_T11SLU_20250201T184431_L2A_red",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B04.tif",
+      "contentSize": "230358436"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_rededge1",
+      "name": "S2C_T11SLU_20250201T184431_L2A_rededge1",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B05.tif",
+      "contentSize": "61214187"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_rededge2",
+      "name": "S2C_T11SLU_20250201T184431_L2A_rededge2",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B06.tif",
+      "contentSize": "61586281"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_rededge3",
+      "name": "S2C_T11SLU_20250201T184431_L2A_rededge3",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B07.tif",
+      "contentSize": "61725666"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_scl",
+      "name": "S2C_T11SLU_20250201T184431_L2A_scl",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/SCL.tif",
+      "contentSize": "2898508"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_snow",
+      "name": "S2C_T11SLU_20250201T184431_L2A_snow",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/SNW_20m.tif",
+      "contentSize": "313313"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_swir16",
+      "name": "S2C_T11SLU_20250201T184431_L2A_swir16",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B11.tif",
+      "contentSize": "61499700"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_swir22",
+      "name": "S2C_T11SLU_20250201T184431_L2A_swir22",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B12.tif",
+      "contentSize": "60984930"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_wvp",
+      "name": "S2C_T11SLU_20250201T184431_L2A_wvp",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/WVP.tif",
+      "contentSize": "46143528"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_preview",
+      "name": "S2C_T11SLU_20250201T184431_L2A_preview",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/L2A_PVI.tif",
+      "contentSize": "215101"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_thumbnail",
+      "name": "S2C_T11SLU_20250201T184431_L2A_thumbnail",
+      "encodingFormat": "image/jpeg",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/L2A_PVI.jpg",
+      "contentSize": "42459"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2C_T11SLU_20250201T184431_L2A_visual",
+      "name": "S2C_T11SLU_20250201T184431_L2A_visual",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/TCI.tif",
+      "contentSize": "353121063"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_aot",
+      "name": "S2B_T11SLU_20250117T183840_L2A_aot",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/AOT.tif",
+      "contentSize": "2018935"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_blue",
+      "name": "S2B_T11SLU_20250117T183840_L2A_blue",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B02.tif",
+      "contentSize": "226729969"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_cloud",
+      "name": "S2B_T11SLU_20250117T183840_L2A_cloud",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/CLD_20m.tif",
+      "contentSize": "464104"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_coastal",
+      "name": "S2B_T11SLU_20250117T183840_L2A_coastal",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B01.tif",
+      "contentSize": "6109085"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_green",
+      "name": "S2B_T11SLU_20250117T183840_L2A_green",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B03.tif",
+      "contentSize": "229041649"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_nir",
+      "name": "S2B_T11SLU_20250117T183840_L2A_nir",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B08.tif",
+      "contentSize": "244778703"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_nir08",
+      "name": "S2B_T11SLU_20250117T183840_L2A_nir08",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B8A.tif",
+      "contentSize": "62193804"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_nir09",
+      "name": "S2B_T11SLU_20250117T183840_L2A_nir09",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B09.tif",
+      "contentSize": "6880952"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_red",
+      "name": "S2B_T11SLU_20250117T183840_L2A_red",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B04.tif",
+      "contentSize": "232368995"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_rededge1",
+      "name": "S2B_T11SLU_20250117T183840_L2A_rededge1",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B05.tif",
+      "contentSize": "61165838"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_rededge2",
+      "name": "S2B_T11SLU_20250117T183840_L2A_rededge2",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B06.tif",
+      "contentSize": "61725799"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_rededge3",
+      "name": "S2B_T11SLU_20250117T183840_L2A_rededge3",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B07.tif",
+      "contentSize": "62049111"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_scl",
+      "name": "S2B_T11SLU_20250117T183840_L2A_scl",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/SCL.tif",
+      "contentSize": "2703534"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_snow",
+      "name": "S2B_T11SLU_20250117T183840_L2A_snow",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/SNW_20m.tif",
+      "contentSize": "54410"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_swir16",
+      "name": "S2B_T11SLU_20250117T183840_L2A_swir16",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B11.tif",
+      "contentSize": "62170729"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_swir22",
+      "name": "S2B_T11SLU_20250117T183840_L2A_swir22",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B12.tif",
+      "contentSize": "61777182"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_wvp",
+      "name": "S2B_T11SLU_20250117T183840_L2A_wvp",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/WVP.tif",
+      "contentSize": "45729332"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_preview",
+      "name": "S2B_T11SLU_20250117T183840_L2A_preview",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/L2A_PVI.tif",
+      "contentSize": "208298"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_thumbnail",
+      "name": "S2B_T11SLU_20250117T183840_L2A_thumbnail",
+      "encodingFormat": "image/jpeg",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/L2A_PVI.jpg",
+      "contentSize": "41003"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel2_after__S2B_T11SLU_20250117T183840_L2A_visual",
+      "name": "S2B_T11SLU_20250117T183840_L2A_visual",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/TCI.tif",
+      "contentSize": "362070147"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_vh",
+      "name": "S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_vh",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_2B43/measurement/iw-vh.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_vv",
+      "name": "S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_vv",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_2B43/measurement/iw-vv.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_thumbnail",
+      "name": "S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_thumbnail",
+      "encodingFormat": "image/png",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_2B43/preview/quick-look.png"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_vh",
+      "name": "S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_vh",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_9DED/measurement/iw-vh.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_vv",
+      "name": "S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_vv",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_9DED/measurement/iw-vv.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_thumbnail",
+      "name": "S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_thumbnail",
+      "encodingFormat": "image/png",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_9DED/preview/quick-look.png"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_vh",
+      "name": "S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_vh",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_E58D/measurement/iw-vh.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_vv",
+      "name": "S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_vv",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_E58D/measurement/iw-vv.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_thumbnail",
+      "name": "S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_thumbnail",
+      "encodingFormat": "image/png",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_E58D/preview/quick-look.png"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_vh",
+      "name": "S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_vh",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_AC37/measurement/iw-vh.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_vv",
+      "name": "S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_vv",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_AC37/measurement/iw-vv.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_thumbnail",
+      "name": "S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_thumbnail",
+      "encodingFormat": "image/png",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_AC37/preview/quick-look.png"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_vh",
+      "name": "S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_vh",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2024/12/28/IW/DV/S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_6A70/measurement/iw-vh.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_vv",
+      "name": "S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_vv",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2024/12/28/IW/DV/S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_6A70/measurement/iw-vv.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_before__S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_thumbnail",
+      "name": "S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_thumbnail",
+      "encodingFormat": "image/png",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2024/12/28/IW/DV/S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_6A70/preview/quick-look.png"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_vh",
+      "name": "S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_vh",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_2EC7/measurement/iw-vh.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_vv",
+      "name": "S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_vv",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_2EC7/measurement/iw-vv.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_thumbnail",
+      "name": "S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_thumbnail",
+      "encodingFormat": "image/png",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_2EC7/preview/quick-look.png"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_vh",
+      "name": "S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_vh",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_3CD7/measurement/iw-vh.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_vv",
+      "name": "S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_vv",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_3CD7/measurement/iw-vv.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_thumbnail",
+      "name": "S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_thumbnail",
+      "encodingFormat": "image/png",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_3CD7/preview/quick-look.png"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_vh",
+      "name": "S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_vh",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_1168/measurement/iw-vh.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_vv",
+      "name": "S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_vv",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_1168/measurement/iw-vv.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_thumbnail",
+      "name": "S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_thumbnail",
+      "encodingFormat": "image/png",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_1168/preview/quick-look.png"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_vh",
+      "name": "S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_vh",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_F8DB/measurement/iw-vh.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_vv",
+      "name": "S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_vv",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_F8DB/measurement/iw-vv.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_thumbnail",
+      "name": "S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_thumbnail",
+      "encodingFormat": "image/png",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_F8DB/preview/quick-look.png"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_vh",
+      "name": "S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_vh",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_0A2E/measurement/iw-vh.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_vv",
+      "name": "S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_vv",
+      "encodingFormat": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_0A2E/measurement/iw-vv.tiff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "scenes_sentinel1_after__S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_thumbnail",
+      "name": "S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_thumbnail",
+      "encodingFormat": "image/png",
+      "contentUrl": "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_0A2E/preview/quick-look.png"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "scenes_sentinel2_before",
+      "name": "Scenes Sentinel2 Before",
+      "description": "STAC records from catalog `earth-search` and collection `sentinel-2-c1-l2a`.",
+      "key": {
+        "@id": "scenes_sentinel2_before/scene_id"
+      },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_before/scene_id",
+          "name": "scene_id",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_before/collection",
+          "name": "collection",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_before/datetime",
+          "name": "datetime",
+          "dataType": "sc:DateTime"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_before/cloud_cover",
+          "name": "cloud_cover",
+          "dataType": "sc:Float"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_before/epsg",
+          "name": "epsg",
+          "dataType": "sc:Integer"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_before/image_url",
+          "name": "image_url",
+          "dataType": "sc:URL",
+          "geocr:bandConfiguration": {
+            "@type": "geocr:BandConfiguration",
+            "geocr:totalBands": 17,
+            "geocr:bandNamesList": [
+              "B01",
+              "B02",
+              "B03",
+              "B04",
+              "B05",
+              "B06",
+              "B07",
+              "B08",
+              "B8A",
+              "B09",
+              "B11",
+              "B12",
+              "wvp",
+              "scl",
+              "aot",
+              "cloud",
+              "snow"
+            ]
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_before/asset_urls",
+          "name": "asset_urls",
+          "dataType": "sc:URL",
+          "isArray": true
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_before/source_id",
+          "name": "source_id",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_before/catalog_id",
+          "name": "catalog_id",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "scenes_sentinel2_before/scene_id": "S2A_T11SLT_20250102T183754_L2A",
+          "scenes_sentinel2_before/collection": "sentinel-2-c1-l2a",
+          "scenes_sentinel2_before/datetime": "2025-01-02T18:45:02.738000Z",
+          "scenes_sentinel2_before/cloud_cover": 3.015763,
+          "scenes_sentinel2_before/epsg": 32611,
+          "scenes_sentinel2_before/image_url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/AOT.tif",
+          "scenes_sentinel2_before/asset_urls": [
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/AOT.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B02.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/CLD_20m.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B01.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B03.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B08.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B8A.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B09.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B04.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B05.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B06.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B07.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/SCL.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/SNW_20m.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B11.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/B12.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/WVP.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/L2A_PVI.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/L2A_PVI.jpg",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LT/2025/1/S2A_T11SLT_20250102T183754_L2A/TCI.tif"
+          ],
+          "scenes_sentinel2_before/source_id": "sentinel2-before",
+          "scenes_sentinel2_before/catalog_id": "earth-search"
+        },
+        {
+          "scenes_sentinel2_before/scene_id": "S2A_T11SLU_20250102T183754_L2A",
+          "scenes_sentinel2_before/collection": "sentinel-2-c1-l2a",
+          "scenes_sentinel2_before/datetime": "2025-01-02T18:44:48.259000Z",
+          "scenes_sentinel2_before/cloud_cover": 1.433715,
+          "scenes_sentinel2_before/epsg": 32611,
+          "scenes_sentinel2_before/image_url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/AOT.tif",
+          "scenes_sentinel2_before/asset_urls": [
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/AOT.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B02.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/CLD_20m.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B01.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B03.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B08.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B8A.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B09.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B04.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B05.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B06.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B07.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/SCL.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/SNW_20m.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B11.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/B12.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/WVP.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/L2A_PVI.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/L2A_PVI.jpg",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2A_T11SLU_20250102T183754_L2A/TCI.tif"
+          ],
+          "scenes_sentinel2_before/source_id": "sentinel2-before",
+          "scenes_sentinel2_before/catalog_id": "earth-search"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "scenes_sentinel2_after",
+      "name": "Scenes Sentinel2 After",
+      "description": "STAC records from catalog `earth-search` and collection `sentinel-2-c1-l2a`.",
+      "key": {
+        "@id": "scenes_sentinel2_after/scene_id"
+      },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_after/scene_id",
+          "name": "scene_id",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_after/collection",
+          "name": "collection",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_after/datetime",
+          "name": "datetime",
+          "dataType": "sc:DateTime"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_after/cloud_cover",
+          "name": "cloud_cover",
+          "dataType": "sc:Float"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_after/epsg",
+          "name": "epsg",
+          "dataType": "sc:Integer"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_after/image_url",
+          "name": "image_url",
+          "dataType": "sc:URL",
+          "geocr:bandConfiguration": {
+            "@type": "geocr:BandConfiguration",
+            "geocr:totalBands": 17,
+            "geocr:bandNamesList": [
+              "B01",
+              "B02",
+              "B03",
+              "B04",
+              "B05",
+              "B06",
+              "B07",
+              "B08",
+              "B8A",
+              "B09",
+              "B11",
+              "B12",
+              "wvp",
+              "scl",
+              "aot",
+              "cloud",
+              "snow"
+            ]
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_after/asset_urls",
+          "name": "asset_urls",
+          "dataType": "sc:URL",
+          "isArray": true
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_after/source_id",
+          "name": "source_id",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel2_after/catalog_id",
+          "name": "catalog_id",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "scenes_sentinel2_after/scene_id": "S2C_T11SLU_20250201T184431_L2A",
+          "scenes_sentinel2_after/collection": "sentinel-2-c1-l2a",
+          "scenes_sentinel2_after/datetime": "2025-02-01T18:45:15.760000Z",
+          "scenes_sentinel2_after/cloud_cover": 7.590701,
+          "scenes_sentinel2_after/epsg": 32611,
+          "scenes_sentinel2_after/image_url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/AOT.tif",
+          "scenes_sentinel2_after/asset_urls": [
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/AOT.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B02.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/CLD_20m.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B01.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B03.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B08.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B8A.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B09.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B04.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B05.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B06.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B07.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/SCL.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/SNW_20m.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B11.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/B12.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/WVP.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/L2A_PVI.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/L2A_PVI.jpg",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/2/S2C_T11SLU_20250201T184431_L2A/TCI.tif"
+          ],
+          "scenes_sentinel2_after/source_id": "sentinel2-after",
+          "scenes_sentinel2_after/catalog_id": "earth-search"
+        },
+        {
+          "scenes_sentinel2_after/scene_id": "S2B_T11SLU_20250117T183840_L2A",
+          "scenes_sentinel2_after/collection": "sentinel-2-c1-l2a",
+          "scenes_sentinel2_after/datetime": "2025-01-17T18:44:47.493000Z",
+          "scenes_sentinel2_after/cloud_cover": 0.333191,
+          "scenes_sentinel2_after/epsg": 32611,
+          "scenes_sentinel2_after/image_url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/AOT.tif",
+          "scenes_sentinel2_after/asset_urls": [
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/AOT.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B02.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/CLD_20m.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B01.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B03.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B08.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B8A.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B09.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B04.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B05.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B06.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B07.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/SCL.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/SNW_20m.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B11.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/B12.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/WVP.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/L2A_PVI.tif",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/L2A_PVI.jpg",
+            "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/11/S/LU/2025/1/S2B_T11SLU_20250117T183840_L2A/TCI.tif"
+          ],
+          "scenes_sentinel2_after/source_id": "sentinel2-after",
+          "scenes_sentinel2_after/catalog_id": "earth-search"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "scenes_sentinel1_before",
+      "name": "Scenes Sentinel1 Before",
+      "description": "STAC records from catalog `earth-search` and collection `sentinel-1-grd`.",
+      "key": {
+        "@id": "scenes_sentinel1_before/scene_id"
+      },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_before/scene_id",
+          "name": "scene_id",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_before/collection",
+          "name": "collection",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_before/datetime",
+          "name": "datetime",
+          "dataType": "sc:DateTime"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_before/cloud_cover",
+          "name": "cloud_cover",
+          "dataType": "sc:Float"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_before/epsg",
+          "name": "epsg",
+          "dataType": "sc:Integer"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_before/image_url",
+          "name": "image_url",
+          "dataType": "sc:URL",
+          "geocr:bandConfiguration": {
+            "@type": "geocr:BandConfiguration",
+            "geocr:totalBands": 2,
+            "geocr:bandNamesList": [
+              "vh",
+              "vv"
+            ]
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_before/asset_urls",
+          "name": "asset_urls",
+          "dataType": "sc:URL",
+          "isArray": true
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_before/source_id",
+          "name": "source_id",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_before/catalog_id",
+          "name": "catalog_id",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "scenes_sentinel1_before/scene_id": "S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76",
+          "scenes_sentinel1_before/collection": "sentinel-1-grd",
+          "scenes_sentinel1_before/datetime": "2025-01-02T14:01:22.773383Z",
+          "scenes_sentinel1_before/cloud_cover": "",
+          "scenes_sentinel1_before/epsg": 4326,
+          "scenes_sentinel1_before/image_url": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_2B43/measurement/iw-vh.tiff",
+          "scenes_sentinel1_before/asset_urls": [
+            "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_2B43/measurement/iw-vh.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_2B43/measurement/iw-vv.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140110_20250102T140135_057266_070B76_2B43/preview/quick-look.png"
+          ],
+          "scenes_sentinel1_before/source_id": "sentinel1-before",
+          "scenes_sentinel1_before/catalog_id": "earth-search"
+        },
+        {
+          "scenes_sentinel1_before/scene_id": "S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76",
+          "scenes_sentinel1_before/collection": "sentinel-1-grd",
+          "scenes_sentinel1_before/datetime": "2025-01-02T14:00:57.772701Z",
+          "scenes_sentinel1_before/cloud_cover": "",
+          "scenes_sentinel1_before/epsg": 4326,
+          "scenes_sentinel1_before/image_url": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_9DED/measurement/iw-vh.tiff",
+          "scenes_sentinel1_before/asset_urls": [
+            "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_9DED/measurement/iw-vh.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_9DED/measurement/iw-vv.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T140045_20250102T140110_057266_070B76_9DED/preview/quick-look.png"
+          ],
+          "scenes_sentinel1_before/source_id": "sentinel1-before",
+          "scenes_sentinel1_before/catalog_id": "earth-search"
+        },
+        {
+          "scenes_sentinel1_before/scene_id": "S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31",
+          "scenes_sentinel1_before/collection": "sentinel-1-grd",
+          "scenes_sentinel1_before/datetime": "2025-01-02T01:59:03.159547Z",
+          "scenes_sentinel1_before/cloud_cover": "",
+          "scenes_sentinel1_before/epsg": 4326,
+          "scenes_sentinel1_before/image_url": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_E58D/measurement/iw-vh.tiff",
+          "scenes_sentinel1_before/asset_urls": [
+            "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_E58D/measurement/iw-vh.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_E58D/measurement/iw-vv.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015850_20250102T015915_057259_070B31_E58D/preview/quick-look.png"
+          ],
+          "scenes_sentinel1_before/source_id": "sentinel1-before",
+          "scenes_sentinel1_before/catalog_id": "earth-search"
+        },
+        {
+          "scenes_sentinel1_before/scene_id": "S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31",
+          "scenes_sentinel1_before/collection": "sentinel-1-grd",
+          "scenes_sentinel1_before/datetime": "2025-01-02T01:58:36.143934Z",
+          "scenes_sentinel1_before/cloud_cover": "",
+          "scenes_sentinel1_before/epsg": 4326,
+          "scenes_sentinel1_before/image_url": "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_AC37/measurement/iw-vh.tiff",
+          "scenes_sentinel1_before/asset_urls": [
+            "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_AC37/measurement/iw-vh.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_AC37/measurement/iw-vv.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/2/IW/DV/S1A_IW_GRDH_1SDV_20250102T015821_20250102T015850_057259_070B31_AC37/preview/quick-look.png"
+          ],
+          "scenes_sentinel1_before/source_id": "sentinel1-before",
+          "scenes_sentinel1_before/catalog_id": "earth-search"
+        },
+        {
+          "scenes_sentinel1_before/scene_id": "S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1",
+          "scenes_sentinel1_before/collection": "sentinel-1-grd",
+          "scenes_sentinel1_before/datetime": "2024-12-28T13:53:02.918948Z",
+          "scenes_sentinel1_before/cloud_cover": "",
+          "scenes_sentinel1_before/epsg": 4326,
+          "scenes_sentinel1_before/image_url": "s3://sentinel-s1-l1c/GRD/2024/12/28/IW/DV/S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_6A70/measurement/iw-vh.tiff",
+          "scenes_sentinel1_before/asset_urls": [
+            "s3://sentinel-s1-l1c/GRD/2024/12/28/IW/DV/S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_6A70/measurement/iw-vh.tiff",
+            "s3://sentinel-s1-l1c/GRD/2024/12/28/IW/DV/S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_6A70/measurement/iw-vv.tiff",
+            "s3://sentinel-s1-l1c/GRD/2024/12/28/IW/DV/S1A_IW_GRDH_1SDV_20241228T135250_20241228T135315_057193_0708A1_6A70/preview/quick-look.png"
+          ],
+          "scenes_sentinel1_before/source_id": "sentinel1-before",
+          "scenes_sentinel1_before/catalog_id": "earth-search"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "scenes_sentinel1_after",
+      "name": "Scenes Sentinel1 After",
+      "description": "STAC records from catalog `earth-search` and collection `sentinel-1-grd`.",
+      "key": {
+        "@id": "scenes_sentinel1_after/scene_id"
+      },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_after/scene_id",
+          "name": "scene_id",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_after/collection",
+          "name": "collection",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_after/datetime",
+          "name": "datetime",
+          "dataType": "sc:DateTime"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_after/cloud_cover",
+          "name": "cloud_cover",
+          "dataType": "sc:Float"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_after/epsg",
+          "name": "epsg",
+          "dataType": "sc:Integer"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_after/image_url",
+          "name": "image_url",
+          "dataType": "sc:URL",
+          "geocr:bandConfiguration": {
+            "@type": "geocr:BandConfiguration",
+            "geocr:totalBands": 2,
+            "geocr:bandNamesList": [
+              "vh",
+              "vv"
+            ]
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_after/asset_urls",
+          "name": "asset_urls",
+          "dataType": "sc:URL",
+          "isArray": true
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_after/source_id",
+          "name": "source_id",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenes_sentinel1_after/catalog_id",
+          "name": "catalog_id",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "scenes_sentinel1_after/scene_id": "S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69",
+          "scenes_sentinel1_after/collection": "sentinel-1-grd",
+          "scenes_sentinel1_after/datetime": "2025-02-02T13:53:00.062714Z",
+          "scenes_sentinel1_after/cloud_cover": "",
+          "scenes_sentinel1_after/epsg": 4326,
+          "scenes_sentinel1_after/image_url": "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_2EC7/measurement/iw-vh.tiff",
+          "scenes_sentinel1_after/asset_urls": [
+            "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_2EC7/measurement/iw-vh.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_2EC7/measurement/iw-vv.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T135247_20250202T135312_057718_071D69_2EC7/preview/quick-look.png"
+          ],
+          "scenes_sentinel1_after/source_id": "sentinel1-after",
+          "scenes_sentinel1_after/catalog_id": "earth-search"
+        },
+        {
+          "scenes_sentinel1_after/scene_id": "S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19",
+          "scenes_sentinel1_after/collection": "sentinel-1-grd",
+          "scenes_sentinel1_after/datetime": "2025-02-02T01:50:43.611494Z",
+          "scenes_sentinel1_after/cloud_cover": "",
+          "scenes_sentinel1_after/epsg": 4326,
+          "scenes_sentinel1_after/image_url": "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_3CD7/measurement/iw-vh.tiff",
+          "scenes_sentinel1_after/asset_urls": [
+            "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_3CD7/measurement/iw-vh.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_3CD7/measurement/iw-vv.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/2/2/IW/DV/S1A_IW_GRDH_1SDV_20250202T015031_20250202T015056_057711_071D19_3CD7/preview/quick-look.png"
+          ],
+          "scenes_sentinel1_after/source_id": "sentinel1-after",
+          "scenes_sentinel1_after/catalog_id": "earth-search"
+        },
+        {
+          "scenes_sentinel1_after/scene_id": "S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C",
+          "scenes_sentinel1_after/collection": "sentinel-1-grd",
+          "scenes_sentinel1_after/datetime": "2025-01-26T14:01:09.114053Z",
+          "scenes_sentinel1_after/cloud_cover": "",
+          "scenes_sentinel1_after/epsg": 4326,
+          "scenes_sentinel1_after/image_url": "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_1168/measurement/iw-vh.tiff",
+          "scenes_sentinel1_after/asset_urls": [
+            "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_1168/measurement/iw-vh.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_1168/measurement/iw-vv.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T140054_20250126T140123_057616_07195C_1168/preview/quick-look.png"
+          ],
+          "scenes_sentinel1_after/source_id": "sentinel1-after",
+          "scenes_sentinel1_after/catalog_id": "earth-search"
+        },
+        {
+          "scenes_sentinel1_after/scene_id": "S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912",
+          "scenes_sentinel1_after/collection": "sentinel-1-grd",
+          "scenes_sentinel1_after/datetime": "2025-01-26T01:59:01.458449Z",
+          "scenes_sentinel1_after/cloud_cover": "",
+          "scenes_sentinel1_after/epsg": 4326,
+          "scenes_sentinel1_after/image_url": "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_F8DB/measurement/iw-vh.tiff",
+          "scenes_sentinel1_after/asset_urls": [
+            "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_F8DB/measurement/iw-vh.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_F8DB/measurement/iw-vv.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015848_20250126T015913_057609_071912_F8DB/preview/quick-look.png"
+          ],
+          "scenes_sentinel1_after/source_id": "sentinel1-after",
+          "scenes_sentinel1_after/catalog_id": "earth-search"
+        },
+        {
+          "scenes_sentinel1_after/scene_id": "S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912",
+          "scenes_sentinel1_after/collection": "sentinel-1-grd",
+          "scenes_sentinel1_after/datetime": "2025-01-26T01:58:34.442119Z",
+          "scenes_sentinel1_after/cloud_cover": "",
+          "scenes_sentinel1_after/epsg": 4326,
+          "scenes_sentinel1_after/image_url": "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_0A2E/measurement/iw-vh.tiff",
+          "scenes_sentinel1_after/asset_urls": [
+            "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_0A2E/measurement/iw-vh.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_0A2E/measurement/iw-vv.tiff",
+            "s3://sentinel-s1-l1c/GRD/2025/1/26/IW/DV/S1A_IW_GRDH_1SDV_20250126T015819_20250126T015848_057609_071912_0A2E/preview/quick-look.png"
+          ],
+          "scenes_sentinel1_after/source_id": "sentinel1-after",
+          "scenes_sentinel1_after/catalog_id": "earth-search"
+        }
+      ]
+    }
+  ]
+}
