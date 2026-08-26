@@ -1,0 +1,26 @@
+# Large raster files (regenerate locally as needed)
+results/*.tif
+results/*.tiff
+
+# Visualization PNGs (can regenerate, but ~1.6 MB)
+results/*color*.png
+results/*map*.png
+
+# System files
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+*.egg-info/
+*.log
+
+# Virtual environments
+fire_analysis_env/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
